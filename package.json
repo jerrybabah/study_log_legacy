@@ -4,7 +4,7 @@
   "description": "express and vue integration template",
   "main": "index.js",
   "scripts": {
-    "server": "cd backend && npm start",
+    "server": "cd backend && npm run dev",
     "client": "cd frontend && npm run serve",
     "build": "cd frontend && npm run build",
     "start": "concurrently \"npm run client\" \"npm run server\"",
