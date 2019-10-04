@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
       res.redirect('/');
     } else {
       // store the tokens in the session
-      console.log(oauthToken);
       req.session.oauthToken = oauthToken;
       req.session.oauthTokenSecret = oauthTokenSecret;
 
