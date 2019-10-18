@@ -2,14 +2,22 @@ import express from 'express';
 import Evernote from 'evernote';
 import config from 'config';
 
+
 const router = express.Router();
 
+
 router.get('/', (req, res) => {
-  const client = new Evernote.Client(config.get('evernote.temporaryToken'));
+  const {
+    consumerKey, consumerSecret, sandbox, china, callback,
+  } = config.get('evernote');
+  console.log({
+    consumerKey, consumerSecret, sandbox, china,
+  });
+  const client = new Evernote.Client({
+    consumerKey, consumerSecret, sandbox, china,
+  });
 
-  const callbackUrl = config.get('evernote.callback');
-
-  client.getRequestToken(callbackUrl, (error, oauthToken, oauthTokenSecret, results) => {
+  client.getRequestToken(callback, (error, oauthToken, oauthTokenSecret, results) => {
     if (error) {
       req.session.error = JSON.stringify(error);
       res.redirect('/');
@@ -24,8 +32,15 @@ router.get('/', (req, res) => {
   });
 });
 
+
 router.get('/callback', (req, res) => {
-  const client = new Evernote.Client(config.get('evernote.temporaryToken'));
+  const {
+    consumerKey, consumerSecret, sandbox, china,
+  } = config.get('evernote');
+  const client = new Evernote.Client({
+    consumerKey, consumerSecret, sandbox, china,
+  });
+
   client.getAccessToken(
     req.session.oauthToken,
     req.session.oauthTokenSecret,
@@ -44,6 +59,7 @@ router.get('/callback', (req, res) => {
         req.session.edamExpires = results.edam_expires;
         req.session.edamNoteStoreUrl = results.edam_noteStoreUrl;
         req.session.edamWebApiUrlPrefix = results.edam_webApiUrlPrefix;
+        console.log(oauthAccessToken);
         res.redirect('/');
       }
     },
