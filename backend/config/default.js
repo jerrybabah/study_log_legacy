@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
-}
-
 module.exports = {
   session: {
     secret: process.env.SESSION_SECRET,
@@ -9,12 +5,25 @@ module.exports = {
     saveUninitialized: true,
   },
   evernote: {
-    temporaryToken: {
-      consumerKey: process.env.API_CONSUMER_KEY,
-      consumerSecret: process.env.API_CONSUMER_SECRET,
-      sandbox: true,
-      china: false,
-    },
+    consumerKey: process.env.API_CONSUMER_KEY,
+    consumerSecret: process.env.API_CONSUMER_SECRET,
+    sandbox: false,
+    china: false,
     callback: 'http://localhost:3000/auth/callback',
+    notebookName: '공부',
+    notesNum: 100,
+    specOption: {
+      includeTitle: true,
+      includeCreated: true,
+      includeUpdated: true,
+      includeTagGuids: true,
+    },
+  },
+  mongoDB: {
+    url: process.env.MONGODB_URL,
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
   },
 };
