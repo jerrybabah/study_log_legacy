@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import logger from 'morgan';
 import history from 'connect-history-api-fallback';
+import cors from 'cors';
 
 import mongoose from 'mongoose';
 
@@ -24,6 +25,7 @@ db.once('open', () => {
   console.log('Connected to mongod server');
 });
 
+app.use(cors({ origin: 'http://localhost:8080' }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
