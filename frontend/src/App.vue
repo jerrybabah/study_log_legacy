@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    this.$store.commit('initializeYearOptions');
+    this.$store.dispatch('rebuildDailyStudyList');
+  },
+};
+</script>
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

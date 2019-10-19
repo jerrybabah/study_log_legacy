@@ -6,21 +6,23 @@
     </div>
     <div class="year-studies">
       <div class="year-studies-header">
-        <h2 class="total-studies">10 studies in 2019</h2>
-        <b-dropdown id="dropdown-1" right size="sm" variant="outline-secondary" text="2019">
-          <b-dropdown-item :disabled="disabled">2019</b-dropdown-item>
-          <b-dropdown-item>2018</b-dropdown-item>
-          <b-dropdown-item>2017</b-dropdown-item>
+        <h2 class="total-studies">{{ studyCount }} learnings in 2019</h2>
+        <b-dropdown id="dropdown-1" right size="sm" variant="outline-secondary"
+        :text="selectedYear">
+          <b-dropdown-item :disabled="yearOption.selected"
+          v-for="(yearOption, key) in yearOptions" :key="key">
+            {{ yearOption.year }}
+          </b-dropdown-item>
         </b-dropdown>
       </div>
       <div class="year-studies-body">
-        <CalendarHeatmap :values="values" :end-date="endDate" :tooltip-unit="tooltipUnit"/>
+        <CalendarHeatmap :values="dailyStudyList" :end-date="endDate" :tooltip-unit="tooltipUnit"/>
       </div>
     </div>
     <div class="studies-activity">
-      <h2 class="studies-activity-header">activity</h2>
+      <h2 class="studies-activity-header">Learning activity</h2>
       <div class="studies-activity-body">
-        <study v-for="(study, key) in values" :key="key" :daily-study="study"/>
+        <study v-for="(study, key) in dailyStudyList" :key="key" :daily-study="study"/>
       </div>
       <div class="studies-activity-footer">
         <b-button block variant="primary">Show more</b-button>
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
 import { CalendarHeatmap } from 'vue-calendar-heatmap';
 import Study from '../components/Study.vue';
 
@@ -41,75 +44,19 @@ export default {
   },
   data() {
     return {
-      disabled: true,
-      values: [
-        {
-          date: '2019-10-01',
-          count: 3,
-          contents: [
-            {
-              guid: 'c3f958f5-c959-46b9-92ef-3b2d7f79f477',
-              title: '임시 노트',
-              date: 1569907299000,
-              tagNames: ['a', 'b'],
-              status: 'updated',
-            },
-            {
-              guid: 'c3f958f5-c959-46b9-92ef-3b2d7f79f477',
-              title: '제목 없음',
-              date: 1569375544000,
-              tagNames: ['a', 'b'],
-              status: 'updated',
-            },
-            {
-              guid: 'c3f958f5-c959-46b9-92ef-3b2d7f79f477',
-              title: '임시 노트',
-              date: 1569907299000,
-              tagNames: ['c', 'd'],
-              status: 'created',
-            },
-          ],
-        },
-        {
-          date: '2019-09-24',
-          count: 2,
-          contents: [
-            {
-              guid: 'c3f958f5-c959-46b9-92ef-3b2d7f79f477',
-              title: '임시 노트',
-              date: 1569907299000,
-              tagNames: ['c', 'd'],
-              status: 'updated',
-            },
-            {
-              guid: 'c3f958f5-c959-46b9-92ef-3b2d7f79f477',
-              title: '제목 없음',
-              date: 1569375544000,
-              tagNames: ['x', 'y'],
-              status: 'updated',
-            },
-          ],
-        },
-      ],
-      endDate: '2019-10-05',
       tooltipUnit: 'learnings',
-      config: {
-        options: [
-          {
-            value: 'option 1',
-          },
-          {
-            value: 'option 2',
-          },
-          {
-            value: 'option 3',
-          },
-        ],
-        placeholder: 'choose',
-        prefix: 'The',
-        backgroundColor: 'green',
-      },
     };
+  },
+  computed: {
+    ...mapState([
+      'dailyStudyList',
+      'yearOptions',
+    ]),
+    ...mapGetters([
+      'studyCount',
+      'selectedYear',
+      'endDate',
+    ]),
   },
 };
 </script>
