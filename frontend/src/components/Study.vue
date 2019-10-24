@@ -38,12 +38,10 @@ export default {
       type: Object,
     },
   },
-  data() {
-    return {
-      studyDate: this.dailyStudy.date,
-    };
-  },
   computed: {
+    studyDate() {
+      return this.dailyStudy.date;
+    },
     createdNotes() {
       return this.dailyStudy.contents.filter(note => note.status === 'created');
     },
