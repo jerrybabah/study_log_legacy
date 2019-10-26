@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home">
     <h1>kimbaba's study log</h1>
     <div class="relations">
       <a href="https://github.com/BABAHIRONOBU" target="_blank"><font-awesome-icon :icon="['fab', 'github']"/></a>
@@ -29,13 +29,14 @@ export default {
 </script>
 
 <style scoped>
-.home {
+/* 왜 이거는 빌드했을 때 적용이 안될까? */
+#home {
   max-width: 800px;
   margin-right: auto;
   margin-left: auto;
   padding: 40px 0;
 }
-h1 {
+#home h1 {
   text-align: center;
 }
 .relations {

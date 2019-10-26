@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import './assets/css/bv-custom.css';
 
 import axios from 'axios';
 import App from './App.vue';

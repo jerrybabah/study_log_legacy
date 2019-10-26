@@ -21,4 +21,10 @@ export default {
   color: #2c3e50;
   margin: 10px 0;
 }
+#home {
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 40px 20px;
+}
 </style>
