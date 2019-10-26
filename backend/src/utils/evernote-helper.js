@@ -137,7 +137,18 @@ class EvernoteHelper {
 
 
   static getDailyStudyList(totalNoteVersions) {
-    return totalNoteVersions.reduce(EvernoteHelper.reducer, []);
+    const dailyStudyList = totalNoteVersions.reduce(EvernoteHelper.reducer, []);
+    dailyStudyList.sort((a, b) => {
+      let comparison = 0;
+      if (a.date > b.date) {
+        comparison = -1;
+      }
+      if (a.date < b.date) {
+        comparison = 1;
+      }
+      return comparison;
+    });
+    return dailyStudyList;
   }
 }
 
