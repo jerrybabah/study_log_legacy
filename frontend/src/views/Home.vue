@@ -2,7 +2,7 @@
   <div class="home">
     <h1>kimbaba's study log</h1>
     <div class="relations">
-      <font-awesome-icon :icon="['fab', 'github']"/>
+      <a href="https://github.com/BABAHIRONOBU" target="_blank"><font-awesome-icon :icon="['fab', 'github']"/></a>
     </div>
     <study-summary/>
     <learning-activity/>
@@ -20,11 +20,6 @@ export default {
     StudySummary,
     LearningActivity,
   },
-  data() {
-    return {
-      tooltipUnit: 'learnings',
-    };
-  },
   computed: {
     ...mapGetters([
       'dailyStudyList',
@@ -38,6 +33,7 @@ export default {
   max-width: 800px;
   margin-right: auto;
   margin-left: auto;
+  padding: 40px 0;
 }
 h1 {
   text-align: center;
@@ -45,5 +41,11 @@ h1 {
 .relations {
   display: flex;
   justify-content: center;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+.relations a {
+  all: unset;
+  cursor: pointer;
 }
 </style>

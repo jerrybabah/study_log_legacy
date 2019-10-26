@@ -36,5 +36,25 @@ export default {
 </script>
 
 <style>
-
+.studies-activity {
+  margin-top: 25px;
+}
+.studies-activity-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.studies-activity-body {
+  position: relative;
+}
+.studies-activity-body::before {
+  position: absolute;
+  top: 0;
+  bottom: -25px;
+  left: 14px;
+  z-index: -1;
+  display: block;
+  width: 2px;
+  content: "";
+  background-color: #e1e4e8;
+};
 </style>

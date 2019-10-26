@@ -72,14 +72,25 @@ export default {
 </script>
 
 <style>
+.year-studies {
+  margin-bottom: 25px;
+}
 .year-studies-header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+}
+.year-studies-header .total-studies {
+  font-size: 1rem;
+  margin: 0;
 }
 .year-studies-body {
-  border: 1px solid black;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
   padding: 25px;
 }
+/* .dropdown button {
+  all: unset;
+} */
 </style>
