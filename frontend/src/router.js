@@ -2,13 +2,13 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import WaitingRoom from './views/WaitingRoom.vue';
+import Auth from './views/Auth.vue';
 import NotFound from './views/NotFound.vue';
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -19,6 +19,11 @@ export default new Router({
       path: '/waiting_room',
       name: 'waiting room',
       component: WaitingRoom,
+    },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: Auth,
     },
     {
       path: '/404',

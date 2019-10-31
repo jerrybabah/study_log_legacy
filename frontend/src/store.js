@@ -106,10 +106,16 @@ export default new Vuex.Store({
 
   actions: {
     rebuildDailyStudyList(context) {
-      const BASE_URL = process.env.VUE_APP_ROOT_API;
+      let URL;
+      if (process.env.NODE_ENV === 'development') {
+        URL = `${process.env.VUE_APP_ROOT_API}/studies/`;
+      } else {
+        URL = '/studies/';
+      }
+
       const year = context.getters.selectedYear;
 
-      axios.get(`${BASE_URL}/studies/?year=${year}`)
+      axios.get(`${URL}?year=${year}`)
         .then(dailyStudyList => context.commit('rebuild', dailyStudyList.data))
         .catch(err => console.log(err));
     },

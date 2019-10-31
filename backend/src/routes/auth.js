@@ -10,9 +10,6 @@ router.get('/', (req, res) => {
   const {
     consumerKey, consumerSecret, sandbox, china, callback,
   } = config.get('evernote');
-  console.log({
-    consumerKey, consumerSecret, sandbox, china,
-  });
   const client = new Evernote.Client({
     consumerKey, consumerSecret, sandbox, china,
   });
@@ -47,7 +44,6 @@ router.get('/callback', (req, res) => {
     req.query.oauth_verifier,
     (error, oauthAccessToken, oauthAccessTokenSecret, results) => {
       if (error) {
-        console.log('error');
         console.log(error);
         res.redirect('/');
       } else {
@@ -59,8 +55,11 @@ router.get('/callback', (req, res) => {
         req.session.edamExpires = results.edam_expires;
         req.session.edamNoteStoreUrl = results.edam_noteStoreUrl;
         req.session.edamWebApiUrlPrefix = results.edam_webApiUrlPrefix;
-        console.log(oauthAccessToken);
-        res.redirect('/');
+        if (process.env.NODE_ENV === 'development') {
+          res.redirect(`${process.env.FRONT_URL}/waiting_room?oauthAccessToken=${oauthAccessToken}`);
+        } else {
+          res.redirect('/waiting_room');
+        }
       }
     },
   );

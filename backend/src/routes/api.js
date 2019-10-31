@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 
 router.get('/studies/', (req, res) => {
   const { year } = req.query;
-  console.log(year);
 
   Study.findByYear(year)
     .then((dailyStudyList) => res.json(dailyStudyList))
@@ -23,7 +22,12 @@ router.get('/studies/', (req, res) => {
 
 
 router.put('/studies/', (req, res) => {
-  const token = req.session.oauthAccessToken;
+  let token;
+  if (process.env.NODE_ENV === 'development') {
+    token = req.body.oauthAccessToken;
+  } else {
+    token = req.session.oauthAccessToken;
+  }
 
   const everHelper = new EvernoteHelper(token);
 
