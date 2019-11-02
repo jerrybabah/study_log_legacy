@@ -20,7 +20,7 @@ module.exports = {
     },
   },
   mongoDB: {
-    url: process.env.MONGODB_URL,
+    url: 'mongodb://localhost:27017/study_log',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

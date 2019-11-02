@@ -17,7 +17,8 @@ import authRouter from './routes/auth';
 
 const app = express();
 
-mongoose.connect(config.get('mongoDB.url'), config.get('mongoDB.options'));
+const { url, options } = config.get('mongoDB');
+mongoose.connect(url, options);
 
 const db = mongoose.connection;
 db.on('error', console.error);
@@ -25,7 +26,9 @@ db.once('open', () => {
   console.log('Connected to mongod server');
 });
 
-app.use(cors({ origin: 'http://localhost:8080' }));
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors({ origin: 'http://localhost:8080' }));
+}
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
