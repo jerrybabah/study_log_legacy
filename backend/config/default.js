@@ -9,7 +9,7 @@ module.exports = {
     consumerSecret: process.env.API_CONSUMER_SECRET,
     sandbox: false,
     china: false,
-    callback: 'http://localhost:3000/auth/callback',
+    callbackPath: 'auth/callback',
     notebookName: '공부',
     notesNum: 100,
     specOption: {

@@ -13,9 +13,11 @@
     "watch": "nodemon"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "config": "^3.2.2",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "~1.4.4",
+    "core-js": "^3.3.6",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^8.1.0",

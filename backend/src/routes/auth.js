@@ -8,11 +8,12 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const {
-    consumerKey, consumerSecret, sandbox, china, callback,
+    consumerKey, consumerSecret, sandbox, china, callbackPath,
   } = config.get('evernote');
   const client = new Evernote.Client({
     consumerKey, consumerSecret, sandbox, china,
   });
+  const callback = `${req.protocol}://${req.hostname}:3000/${callbackPath}`;
 
   client.getRequestToken(callback, (error, oauthToken, oauthTokenSecret, results) => {
     if (error) {
