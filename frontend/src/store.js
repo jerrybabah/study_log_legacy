@@ -110,7 +110,7 @@ export default new Vuex.Store({
       if (process.env.NODE_ENV === 'development') {
         URL = `${process.env.VUE_APP_ROOT_API}/studies/`;
       } else {
-        URL = '/studies/';
+        URL = '/api/studies/';
       }
 
       const year = context.getters.selectedYear;

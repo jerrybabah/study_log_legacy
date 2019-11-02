@@ -88,7 +88,7 @@ export default {
 .year-studies-body {
   border: 1px solid #d1d5da;
   border-radius: 3px;
-  padding: 25px;
+  padding: 20px;
 }
 /* .dropdown button {
   all: unset;

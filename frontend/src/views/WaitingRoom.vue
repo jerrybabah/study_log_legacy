@@ -17,7 +17,7 @@ export default {
       // 아래 코드가 좀 그렇긴 하지만 일단 이렇게 하자.
       data.oauthAccessToken = decodeURIComponent(window.location.search.substr(18));
     } else {
-      URL = '/studies/';
+      URL = '/api/studies/';
     }
 
     this.$http.put(URL, data)
