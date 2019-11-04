@@ -5,6 +5,8 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import redis from 'redis';
+import connectRedis from 'connect-redis';
 import logger from 'morgan';
 import history from 'connect-history-api-fallback';
 import cors from 'cors';
@@ -14,6 +16,7 @@ import mongoose from 'mongoose';
 import indexRouter from './routes/index';
 import apiRouter from './routes/api';
 import authRouter from './routes/auth';
+import { prependListener } from 'cluster';
 
 const app = express();
 
@@ -33,7 +36,30 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session(config.get('session')));
+
+let sessionOption = config.get('session');
+
+if (process.env.NODE_ENV === 'production') {
+  const { host: redisHost, port: redisPort, pass: redisPass } = config.get('redis');
+  const redisClient = redis.createClient(redisPort, redisHost);
+  redisClient.auth(redisPass, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+  const RedisStore = connectRedis(session);
+
+  sessionOption = {
+    ...sessionOption,
+    store: new RedisStore({
+      client: redisClient,
+      logErrors: true,
+    }),
+  };
+}
+
+app.use(session(sessionOption));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
