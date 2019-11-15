@@ -20,7 +20,8 @@
 - [vue-calendar-heatmap](https://github.com/WildCodeSchool/vue-calendar-heatmap)
 
 ## 해야 할 일
-- 배포: [heroku](https://www.heroku.com/), [atlas](https://www.mongodb.com/cloud/atlas) 사용 예정
+- 배포 환경에서 데이터 갱신 안되는 문제 해결
+- 수동으로 데이터 업데이트 해줘야 하는 것을 [웹훅](https://dev.evernote.com/doc/articles/polling_notification.php)을 이용해 개선하기
 
 
 
