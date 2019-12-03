@@ -16,7 +16,6 @@ import mongoose from 'mongoose';
 import indexRouter from './routes/index';
 import apiRouter from './routes/api';
 import authRouter from './routes/auth';
-import { prependListener } from 'cluster';
 
 const app = express();
 

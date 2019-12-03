@@ -1,5 +1,8 @@
-# Study Log
+# Study Log Legacy
 에버노트 api를 이용해 공부한 기록을 볼 수 있는 웹앱을 만들어봤습니다. 처음으로 결과물이 나온 개인 프로젝트입니다. 예쁘게 봐주세요^^
+
+## 프로젝트를 다시 만들고 있는 중입니다.
+typescript, react를 사용할 예정이고 기능을 좀 더 보완할 예정입니다.
 
 ## 프로세스 소개
 1. 공부한 내용을 모두 에버노트에 작성해 놓습니다.  
@@ -20,8 +23,7 @@
 - [vue-calendar-heatmap](https://github.com/WildCodeSchool/vue-calendar-heatmap)
 
 ## 해야 할 일
-- 배포 환경에서 데이터 갱신 안되는 문제 해결
-- 수동으로 데이터 업데이트 해줘야 하는 것을 [웹훅](https://dev.evernote.com/doc/articles/polling_notification.php)을 이용해 개선하기
+[깃허브 프로젝트 참고](https://github.com/BABAHIRONOBU/study_log_legacy/projects/1)
 
 
 
